@@ -3,6 +3,7 @@ import time
 import datetime
 import re
 import json
+import timeit
 
 uzyszkodnik = 'lololoks'
 haslo = '4mzorwu4'
@@ -94,16 +95,23 @@ res = s.get(url_swiat)
 url_token = res.json()['uri']
 
 # get token
+teraz = timeit.default_timer()
 res = s.get(url_token)
 
 # set tribal wars header
+
 s.headers['TribalWars-Ajax'] = '1'
 czas = res.text[-417:-390]
 czas = re.sub(r'[itn(); \n]', '', czas)
-roznica = float(czas)-time.time()
-while True:
-    local_time = time.ctime(time.time()+roznica)
-    print("Local time:", local_time)
+teraz = timeit.default_timer() - teraz
+roznica = float(czas) - time.time() + teraz
+print(teraz)
+print(roznica)
+
+
+czas_now = time.time()+roznica
+local_time = time.ctime(czas_now)
+print(local_time)
 
 # logged into game
 # get gameworld data
