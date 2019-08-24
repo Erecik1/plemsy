@@ -1,3 +1,3 @@
-Credits:
-~~My mom~~
+Credits:<br>
+~~My mom~~<br>
 Xavan
