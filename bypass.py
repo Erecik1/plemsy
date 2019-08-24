@@ -22,7 +22,7 @@ ilosc = {"ilosc_spear": "1",
         "ilosc_heavy": "0",
         "ilosc_ram": "0",
         "ilosc_catapult": "0",
-        "ilosc_knight": "0",
+        "ilosc_knight": "1",
         "ilosc_snob": "0"
 }
 
