@@ -7,12 +7,12 @@ import timeit
 uzyszkodnik = 'lololoks'
 haslo = '4mzorwu4'
 swiat = 'pl140'
-wiocha = '2701'
+wiocha = '92681'
 url = 'https://www.plemiona.pl'
 authurl = f'{url}/page/auth'
 url_swiat = f"{url}/page/play/{swiat}"
 
-ilosc = {"ilosc_spear": "100",
+ilosc = {"ilosc_spear": "1",
         "ilosc_sword": "0",
         "ilosc_axe": "0",
         "ilosc_archer": "0",
@@ -44,7 +44,7 @@ budynki = {
     'kuznia': 'smith'
 }
 
-coordy = {"x": "584", "y": "638"}
+coordy = {"x": "780", "y": "560"}
 rodzaj = ("Napad")
 jednostka = "spear"
 
@@ -57,7 +57,7 @@ def rekrutacja(jednostka,ilosc):
 
 def atakowanie():
     url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&screen=place&try=confirm"
-    body = (f"14b73ac5ed6106dc1e403a=db3a67f914b73a&source_village={wiocha}&x={coordy['x']}&y={coordy['y']}&target_type=coord&attack={rodzaj}&input={coordy['x']}|{coordy['y']}&"
+    body = (f"4020934f82eabb1efbb28c=458160e5402093&source_village={wiocha}&x={coordy['x']}&y={coordy['y']}&target_type=coord&attack={rodzaj}&input={coordy['x']}|{coordy['y']}&"
     f"spear={ilosc['ilosc_spear']}&sword={ilosc['ilosc_sword']}&axe={ilosc['ilosc_axe']}&archer={ilosc['ilosc_archer']}&spy={ilosc['ilosc_spy']}&light={ilosc['ilosc_light']}&"
     f"marcher={ilosc['ilosc_marcher']}&heavy={ilosc['ilosc_heavy']}&ram={ilosc['ilosc_ram']}&catapult={ilosc['ilosc_catapult']}&knight={ilosc['ilosc_knight']}&snob={ilosc['ilosc_snob']}")
     res = s.post(url, data=body, allow_redirects=False)
@@ -78,11 +78,12 @@ def czasowka(*args):
     dt = datetime.datetime(*args)
     tm = time.mktime(dt.timetuple())
     while True:
-        if  time.time()+roznica >= tm:
+        if  timeit.default_timer()+roznica >= tm:
             atakowanie()
+            print(tm)
             print('wyslalo')
             break
-        print(time.ctime(time.time()+roznica) + ' czekam na ', *args)
+        print(f'{time.ctime(timeit.default_timer()+roznica)} +  czekam na {time.ctime(tm)} ')
 
 s = requests.Session()
 
@@ -97,18 +98,20 @@ res = s.post(authurl, data=data, allow_redirects=False)
 
 res = s.get(url_swiat)
 url_token = res.json()['uri']
-
 teraz = timeit.default_timer()
 res = s.get(url_token)
 
+
+
 s.headers['TribalWars-Ajax'] = '1'
-czas = res.text[-390:-360]
+czas = res.text[-395:-360]
 czas = re.sub(r'[Tmgitn(); \n]', '', czas)
 teraz = timeit.default_timer() - teraz
-roznica = float(czas) - timeit.default_timer() + teraz
+roznica = float(czas[1::]) - timeit.default_timer() + teraz
 
 czas_strony = timeit.default_timer()+roznica
 local_time = time.ctime(czas_strony)
+
 
 url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&ajax=ree"
 res = s.get(url)
@@ -116,4 +119,4 @@ game_data = res.json()
 
 h = game_data['game_data']['csrf']
 
-#czasowka(2019,8,24,18,46,45)
+czasowka(2019,8,24,23,14,25)
