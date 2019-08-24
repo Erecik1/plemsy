@@ -2,12 +2,11 @@ import requests
 import time
 import datetime
 import re
-import json
 import timeit
 
 uzyszkodnik = 'lololoks'
 haslo = '4mzorwu4'
-swiat = 'pl140'
+swiat = f'pl140'
 wiocha = '2701'
 url = 'https://www.plemiona.pl'
 authurl = f'{url}/page/auth'
@@ -103,12 +102,14 @@ teraz = timeit.default_timer()
 res = s.get(url_token)
 
 s.headers['TribalWars-Ajax'] = '1'
-czas = res.text[-417:-390]
+czas = res.text[-500:-380]
 czas = re.sub(r'[itn(); \n]', '', czas)
+print(res.text)
+print(czas)
 teraz = timeit.default_timer() - teraz
-roznica = float(czas) - time.time() + teraz
+roznica = float(czas) - timeit.default_timer + teraz
 
-czas_strony = time.time()+roznica
+czas_strony = timeit.default_timer()+roznica
 local_time = time.ctime(czas_strony)
 
 url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&ajax=ree"
@@ -117,4 +118,4 @@ game_data = res.json()
 
 h = game_data['game_data']['csrf']
 
-czasowka(2019,8,24,18,46,45)
+#czasowka(2019,8,24,18,46,45)
