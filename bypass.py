@@ -6,13 +6,13 @@ import timeit
 
 uzyszkodnik = 'lololoks'
 haslo = '4mzorwu4'
-swiat = f'pl140'
+swiat = 'pl140'
 wiocha = '2701'
 url = 'https://www.plemiona.pl'
 authurl = f'{url}/page/auth'
 url_swiat = f"{url}/page/play/{swiat}"
 
-ilosc = {"ilosc_spear": "2",
+ilosc = {"ilosc_spear": "100",
         "ilosc_sword": "0",
         "ilosc_axe": "0",
         "ilosc_archer": "0",
@@ -79,10 +79,10 @@ def czasowka(*args):
     tm = time.mktime(dt.timetuple())
     while True:
         if  time.time()+roznica >= tm:
-            rekrutacja('spear','1')
+            atakowanie()
             print('wyslalo')
             break
-        print(time.ctime(time.time()+roznica) + ' czekam na '+ '18:46:45')
+        print(time.ctime(time.time()+roznica) + ' czekam na ', *args)
 
 s = requests.Session()
 
@@ -102,12 +102,10 @@ teraz = timeit.default_timer()
 res = s.get(url_token)
 
 s.headers['TribalWars-Ajax'] = '1'
-czas = res.text[-500:-380]
-czas = re.sub(r'[itn(); \n]', '', czas)
-print(res.text)
-print(czas)
+czas = res.text[-390:-360]
+czas = re.sub(r'[Tmgitn(); \n]', '', czas)
 teraz = timeit.default_timer() - teraz
-roznica = float(czas) - timeit.default_timer + teraz
+roznica = float(czas) - timeit.default_timer() + teraz
 
 czas_strony = timeit.default_timer()+roznica
 local_time = time.ctime(czas_strony)
