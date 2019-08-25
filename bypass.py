@@ -4,14 +4,6 @@ import datetime
 import re
 import timeit
 
-uzyszkodnik = 'lololoks'
-haslo = '4mzorwu4'
-swiat = 'pl140'
-wiocha = '92681'
-url = 'https://www.plemiona.pl'
-authurl = f'{url}/page/auth'
-url_swiat = f"{url}/page/play/{swiat}"
-
 ilosc = {"ilosc_spear": "1",
         "ilosc_sword": "0",
         "ilosc_axe": "0",
@@ -47,6 +39,22 @@ budynki = {
 coordy = {"x": "780", "y": "560"}
 rodzaj = ("Napad")
 jednostka = "spear"
+
+def sprawdz_konto(login,haslo): # poprawic
+    s = requests.Session()
+
+    s.headers['User-Agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:63.0) Gecko/20100101 Firefox/63.0"
+    s.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+    s.headers['X-Requested-With'] = 'XMLHttpRequest'
+
+    res = s.get(url)
+
+    data = f"username={login}&password={haslo}&remember=1"
+    res = s.post(authurl, data=data, allow_redirects=False)
+    if res.cookies == 200:
+        return True
+    else:
+        return False
 
 def rekrutacja(jednostka,ilosc):
     body = f"units%5B{jednostka}%5D={ilosc}"
@@ -99,38 +107,43 @@ def kareta():
     "&train%5B4%5D%5Bsnob%5D=1&spear=0&sword=0&axe=6000&archer=0&spy=0&light=0&marcher=0&heavy=0&ram=0&catapult=0&knight=0&snob=1&building=farm&h=f2adb1fb")
     res = s.post(url, data=body_potwierdzenie, allow_redirects=True)
 
-s = requests.Session()
+def main():
+    wiocha = '92681'
+    authurl = f'{url}/page/auth'
+    url_swiat = f"{url}/page/play/{swiat}"
 
-s.headers['User-Agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:63.0) Gecko/20100101 Firefox/63.0"
-s.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-s.headers['X-Requested-With'] = 'XMLHttpRequest'
+    s = requests.Session()
 
-res = s.get(url)
+    s.headers['User-Agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:63.0) Gecko/20100101 Firefox/63.0"
+    s.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+    s.headers['X-Requested-With'] = 'XMLHttpRequest'
 
-data = f"username={uzyszkodnik}&password={haslo}&remember=1"
-res = s.post(authurl, data=data, allow_redirects=False)
+    res = s.get(url)
 
-res = s.get(url_swiat)
-url_token = res.json()['uri']
-teraz = timeit.default_timer()
-res = s.get(url_token)
+    data = f"username={uzyszkodnik}&password={haslo}&remember=1"
+    res = s.post(authurl, data=data, allow_redirects=False)
 
-requests.
-
-s.headers['TribalWars-Ajax'] = '1'
-czas = res.text[-395:-360]
-czas = re.sub(r'[Tmgitn(); \n]', '', czas)
-teraz = timeit.default_timer() - teraz
-roznica = float(czas[1::]) - timeit.default_timer() + teraz
-
-czas_strony = timeit.default_timer()+roznica
-local_time = time.ctime(czas_strony)
+    res = s.get(url_swiat)
+    url_token = res.json()['uri']
+    teraz = timeit.default_timer()
+    res = s.get(url_token)
 
 
-url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&ajax=ree"
-res = s.get(url)
-game_data = res.json()
+    s.headers['TribalWars-Ajax'] = '1'
+    czas = res.text[-395:-360]
+    czas = re.sub(r'[Tmgitn(); \n]', '', czas)
+    teraz = timeit.default_timer() - teraz
+    roznica = float(czas[1::]) - timeit.default_timer() + teraz
 
-h = game_data['game_data']['csrf']
+    czas_strony = timeit.default_timer()+roznica
+    local_time = time.ctime(czas_strony)
 
-czasowka(2019,8,24,23,14,25)
+
+    url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&ajax=ree"
+    res = s.get(url)
+    game_data = res.json()
+
+    h = game_data['game_data']['csrf']
+
+#czasowka(2019,8,24,23,14,25)
+#print(sprawdz_konto('lololoks','4mzkkk'))
