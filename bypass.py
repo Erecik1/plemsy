@@ -61,7 +61,7 @@ def rekrutacja(jednostka,ilosc):
     url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&screen=barracks&ajaxaction=train&mode=train&&h={h}&&client_time={int(time.time())}"
     res = s.post(url, data=body, allow_redirects=False)
 
-def atakowanie():
+def atakowanie(wioska,cel,jednoski,godzina):
     url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&screen=place&try=confirm"
     body = (f"4020934f82eabb1efbb28c=458160e5402093&source_village={wiocha}&x={coordy['x']}&y={coordy['y']}&target_type=coord&attack={rodzaj}&input={coordy['x']}|{coordy['y']}&"
     f"spear={ilosc['ilosc_spear']}&sword={ilosc['ilosc_sword']}&axe={ilosc['ilosc_axe']}&archer={ilosc['ilosc_archer']}&spy={ilosc['ilosc_spy']}&light={ilosc['ilosc_light']}&"
@@ -75,7 +75,7 @@ def atakowanie():
     f"marcher={ilosc['ilosc_marcher']}&heavy={ilosc['ilosc_heavy']}&ram={ilosc['ilosc_ram']}&catapult={ilosc['ilosc_catapult']}&knight={ilosc['ilosc_knight']}&snob={ilosc['ilosc_snob']}&building=main&h={h}")
     res = s.post(url, data=body_potwierdzenie, allow_redirects=True)
 
-def upgrade():
+def upgrade(wiocha,budynek,godzina):
     upgrade_url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&screen=main&ajaxaction=upgrade_building&type=main&h={h}&&client_time={int(time.time())}"
     body = f'id={budynki["ratusz"]}&force=1&destroy=0&source={wiocha}'
     res = s.post(upgrade_url, data=body, allow_redirects=False)
