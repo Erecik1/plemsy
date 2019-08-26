@@ -31,8 +31,8 @@ def timeline_add_build():
     slot_raw_raw = list(map(int,slot_raw))
 
 def timeline_add_atack():
-    slot = f"{root.time_atack.text()} | ATTACK | ID: {root.village_id_source.text()} | {root.target_xy.Text()}"
-    print(root.time_atack.text(),root.village_id_source.text(),root.target_xy.Text())
+    slot = f"{root.time_atack.text()} | ATTACK | ID: {root.village_id_source.text()} | {root.target_xy.text()}"
+    print(root.time_atack.text(),root.village_id_source.text(),root.target_xy.text())
     root.timeline.addItem(slot)
 
 def show_atack_content():
