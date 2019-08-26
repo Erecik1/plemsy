@@ -3,6 +3,7 @@ import time
 import datetime
 import re
 import timeit
+import threading
 
 ilosc = {"ilosc_spear": "1",
         "ilosc_sword": "0",
