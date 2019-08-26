@@ -18,12 +18,7 @@ def error_puste_pole():
     QMessageBox.information(None, "404", "One or more field is empty")
 
 def timeline_add(): # poprawic
-    tree = root.timeline_view
-    strings = ["Time","Type","Properties"]
-    l = []
-    for i in strings:
-        l.append(QTreeWidgetItem(i))
-    tree.addTopLevelItems(l)
+    pass
 
 
 if __name__ == '__main__':
