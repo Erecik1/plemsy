@@ -13,10 +13,18 @@ def przypisz():
         world = dlg.worldLog.text()
         dlg.close()
         root.show()
-        error_puste_pole()
 
 def error_puste_pole():
     QMessageBox.information(None, "404", "One or more field is empty")
+
+def timeline_add(): # poprawic
+    tree = root.timeline_view
+    strings = ["Time","Type","Properties"]
+    l = []
+    for i in strings:
+        l.append(QTreeWidgetItem(i))
+    tree.addTopLevelItems(l)
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
@@ -30,10 +38,10 @@ if __name__ == '__main__':
 
 
     dlg.login_button.clicked.connect(przypisz)
+    root.addToTime.clicked.connect(timeline_add)
 
 
 
-    root.menubar.menuAtack.actionNormal.addAction(error_puste_pole)
 
     dlg.show()
     app.exec()

@@ -6,151 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
-    <height>315</height>
+    <width>550</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>466</width>
-    <height>315</height>
+    <width>550</width>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>466</width>
-    <height>315</height>
+    <width>550</width>
+    <height>400</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="okno_build">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>471</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QPushButton" name="pushButton">
-     <property name="geometry">
-      <rect>
-       <x>390</x>
-       <y>50</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>PushButton</string>
-     </property>
-    </widget>
-    <widget class="QFrame" name="frame">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>221</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>91</width>
-        <height>91</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Cords</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Vilage's ID</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Time</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_4">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>10</y>
-        <width>41</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>70</y>
-        <width>113</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>40</y>
-        <width>113</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>10</y>
-        <width>41</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>110</y>
-      <width>461</width>
-      <height>171</height>
+      <y>180</y>
+      <width>551</width>
+      <height>221</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -159,56 +41,320 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QListView" name="Timeline">
+    <widget class="QListWidget" name="listWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
-       <width>471</width>
-       <height>161</height>
+       <y>20</y>
+       <width>551</width>
+       <height>192</height>
       </rect>
      </property>
     </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>466</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuAtack">
-    <property name="title">
-     <string>Atack</string>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>551</width>
+      <height>201</height>
+     </rect>
     </property>
-    <addaction name="actionNormal"/>
-    <addaction name="actionNoble"/>
-   </widget>
-   <widget class="QMenu" name="menuBuild">
-    <property name="title">
-     <string>Build</string>
+    <property name="minimumSize">
+     <size>
+      <width>551</width>
+      <height>191</height>
+     </size>
     </property>
-    <addaction name="actionBuild"/>
-   </widget>
-   <widget class="QMenu" name="menurecruitment">
-    <property name="title">
-     <string>Recruitment</string>
+    <property name="currentIndex">
+     <number>2</number>
     </property>
-    <addaction name="actionRecruitment"/>
+    <widget class="QWidget" name="atack_tab">
+     <attribute name="title">
+      <string>Atack</string>
+     </attribute>
+     <widget class="QPushButton" name="addToTime_atack">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>60</y>
+        <width>161</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add To Timeline</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="noble_tab">
+     <attribute name="title">
+      <string>Noble</string>
+     </attribute>
+     <widget class="QPushButton" name="addToTime_noble">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>60</y>
+        <width>161</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add To Timeline</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="build_tab">
+     <attribute name="title">
+      <string>Build</string>
+     </attribute>
+     <widget class="QLineEdit" name="set_time">
+      <property name="geometry">
+       <rect>
+        <x>119</x>
+        <y>86</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>yyyy:mm:dd:h:m:s:ms</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="village_label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>59</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Village's ID&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="ID_village">
+      <property name="geometry">
+       <rect>
+        <x>119</x>
+        <y>56</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>eg. 2791</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="village_label_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>27</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Build&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="time_label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Time&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="addToTime_build">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>50</y>
+        <width>161</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add To Timeline</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="build_type">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>30</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>main</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>barracks</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>statue</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>market</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>wood</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>stone</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>iron</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>farm</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>storage</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>hide</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>wall</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>garage</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>snob</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>smith</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="train_tab">
+     <attribute name="title">
+      <string>Train</string>
+     </attribute>
+     <widget class="QPushButton" name="addToTime_train">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>60</y>
+        <width>161</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add To Timeline</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>271</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <widget class="QLabel" name="time_label_2">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>54</y>
+         <width>89</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Time&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="village_label_3">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>23</y>
+         <width>89</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Village's ID&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="ID_village_2">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>20</y>
+         <width>131</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="placeholderText">
+        <string>eg. 2791</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="set_time_2">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>50</y>
+         <width>131</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="placeholderText">
+        <string>yyyy:mm:dd:h:m:s:ms</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="settings_tab">
+     <attribute name="title">
+      <string>Settings?</string>
+     </attribute>
+    </widget>
    </widget>
-   <widget class="QMenu" name="menuOptions">
-    <property name="title">
-     <string>Options</string>
-    </property>
-    <addaction name="actionOptions"/>
-   </widget>
-   <addaction name="menuAtack"/>
-   <addaction name="menuBuild"/>
-   <addaction name="menurecruitment"/>
-   <addaction name="menuOptions"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNormal">
@@ -252,6 +398,11 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>ID_village</tabstop>
+  <tabstop>set_time</tabstop>
+  <tabstop>addToTime_build</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
