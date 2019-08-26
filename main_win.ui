@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>Plemsy</class>
+ <widget class="QMainWindow" name="Plemsy">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Plemsy</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame_2">
@@ -41,7 +41,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QListWidget" name="listWidget">
+    <widget class="QListWidget" name="timeline">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -50,6 +50,20 @@
        <height>192</height>
       </rect>
      </property>
+     <property name="flow">
+      <enum>QListView::TopToBottom</enum>
+     </property>
+     <property name="layoutMode">
+      <enum>QListView::SinglePass</enum>
+     </property>
+     <property name="viewMode">
+      <enum>QListView::ListMode</enum>
+     </property>
+     <item>
+      <property name="text">
+       <string>CZAS|TYP|SZCZEGÓŁY</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QTabWidget" name="tabWidget">
@@ -68,7 +82,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="atack_tab">
      <attribute name="title">
@@ -132,7 +146,7 @@
         <height>71</height>
        </rect>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -152,7 +166,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="set_time">
+           <widget class="QLineEdit" name="time_build">
             <property name="placeholderText">
              <string>yyyy:mm:dd:h:m:s:ms</string>
             </property>
@@ -170,7 +184,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="ID_village">
+           <widget class="QLineEdit" name="ID_village_build">
             <property name="placeholderText">
              <string>eg. 2791</string>
             </property>
@@ -279,14 +293,6 @@
        <string>Add To Timeline</string>
       </property>
      </widget>
-     <zorder>widget_2</zorder>
-     <zorder>set_time</zorder>
-     <zorder>village_label</zorder>
-     <zorder>ID_village</zorder>
-     <zorder>village_label_2</zorder>
-     <zorder>time_label</zorder>
-     <zorder>build_type</zorder>
-     <zorder>addToTime_build</zorder>
     </widget>
     <widget class="QWidget" name="train_tab">
      <attribute name="title">
@@ -314,7 +320,7 @@
         <height>61</height>
        </rect>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -334,7 +340,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="set_time_2">
+           <widget class="QLineEdit" name="time_train">
             <property name="placeholderText">
              <string>yyyy:mm:dd:h:m:s:ms</string>
             </property>
@@ -352,7 +358,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="ID_village_2">
+           <widget class="QLineEdit" name="ID_village_train">
             <property name="placeholderText">
              <string>eg. 2791</string>
             </property>
@@ -445,7 +451,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="amount_train">
             <property name="placeholderText">
              <string>eg. 1</string>
             </property>
@@ -507,8 +513,8 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>ID_village</tabstop>
-  <tabstop>set_time</tabstop>
+  <tabstop>ID_village_build</tabstop>
+  <tabstop>time_build</tabstop>
   <tabstop>addToTime_build</tabstop>
  </tabstops>
  <resources/>
