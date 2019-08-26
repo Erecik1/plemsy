@@ -72,7 +72,7 @@
       <x>0</x>
       <y>0</y>
       <width>551</width>
-      <height>201</height>
+      <height>191</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -82,11 +82,11 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="atack_tab">
      <attribute name="title">
-      <string>Atack</string>
+      <string>Attack</string>
      </attribute>
      <widget class="QPushButton" name="addToTime_atack">
       <property name="geometry">
@@ -100,6 +100,89 @@
       <property name="text">
        <string>Add To Timeline</string>
       </property>
+     </widget>
+     <widget class="QWidget" name="widget_3" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>501</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="layoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>492</width>
+         <height>43</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QLabel" name="time_label_3">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Time&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="time_atack">
+            <property name="placeholderText">
+             <string>yyyy:mm:dd:h:m:s:ms</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <widget class="QLabel" name="village_label_6">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Village's ID&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="village_id_source">
+            <property name="placeholderText">
+             <string>eg. 2791</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <widget class="QLabel" name="village_label_8">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Target&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="target_xy">
+            <property name="placeholderText">
+             <string>512|720</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="atack_content">
+          <property name="text">
+           <string>Content</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="noble_tab">
@@ -471,46 +554,6 @@
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionNormal">
-   <property name="text">
-    <string>Normal</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+1</string>
-   </property>
-  </action>
-  <action name="actionNoble">
-   <property name="text">
-    <string>Noble</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+2</string>
-   </property>
-  </action>
-  <action name="actionBuild">
-   <property name="text">
-    <string>Just Build</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+3</string>
-   </property>
-  </action>
-  <action name="actionRecruitment">
-   <property name="text">
-    <string>Just Recruitment</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+4</string>
-   </property>
-  </action>
-  <action name="actionOptions">
-   <property name="text">
-    <string>Options</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+5</string>
-   </property>
-  </action>
  </widget>
  <tabstops>
   <tabstop>ID_village_build</tabstop>

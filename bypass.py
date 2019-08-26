@@ -19,23 +19,6 @@ ilosc = {"ilosc_spear": "1",
         "ilosc_snob": "0"
 }
 
-budynki = {
-    'ratusz': 'main',
-    'koszary': 'barracks',
-    'piedestal': 'statue',
-    'rynek': 'market',
-    'tartak': 'wood',
-    'cegielnia': 'stone',
-    'huta': 'iron',
-    'zagroda': 'farm',
-    'spichlerz': 'storage',
-    'schowek': 'hide',
-    'mur': 'wall',
-    'stajnia': 'stable',
-    'warsztat': 'garage',
-    'palac': 'snob',
-    'kuznia': 'smith'
-}
 
 coordy = {"x": "780", "y": "560"}
 rodzaj = ("Napad")
@@ -76,7 +59,7 @@ def atakowanie(wioska,cel,jednoski,godzina):
     f"marcher={ilosc['ilosc_marcher']}&heavy={ilosc['ilosc_heavy']}&ram={ilosc['ilosc_ram']}&catapult={ilosc['ilosc_catapult']}&knight={ilosc['ilosc_knight']}&snob={ilosc['ilosc_snob']}&building=main&h={h}")
     res = s.post(url, data=body_potwierdzenie, allow_redirects=True)
 
-def upgrade(wiocha,budynek,godzina):
+def upgrade(`wiocha,budynek,godzina):
     upgrade_url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&screen=main&ajaxaction=upgrade_building&type=main&h={h}&&client_time={int(time.time())}"
     body = f'id={budynki["ratusz"]}&force=1&destroy=0&source={wiocha}'
     res = s.post(upgrade_url, data=body, allow_redirects=False)
