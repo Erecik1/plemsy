@@ -12,7 +12,7 @@ def logout(city_id):
 
 def prime(time): #wypierdala sie przy wywołaniu url 15 linia
     print('test')
-    print(auth)
+    print(auth) # wypierdala sie przy wywolaniu czegokolwiek
     s = requests.Session()
     print(time)
     s.headers['User-Agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:63.0) Gecko/20100101 Firefox/63.0"
