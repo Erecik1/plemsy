@@ -3,26 +3,9 @@ import time
 import datetime
 import re
 import timeit
-import threading
-
-ilosc = {"ilosc_spear": "1",
-        "ilosc_sword": "0",
-        "ilosc_axe": "0",
-        "ilosc_archer": "0",
-        "ilosc_spy": "0",
-        "ilosc_light": "0",
-        "ilosc_marcher": "0",
-        "ilosc_heavy": "0",
-        "ilosc_ram": "0",
-        "ilosc_catapult": "0",
-        "ilosc_knight": "1",
-        "ilosc_snob": "0"
-}
-
 
 coordy = {"x": "780", "y": "560"}
 rodzaj = ("Napad")
-jednostka = "spear"
 
 def sprawdz_konto(login,haslo): # poprawic
     s = requests.Session()
@@ -48,8 +31,8 @@ def rekrutacja(jednostka,ilosc):
 def atakowanie(wioska,cel,jednoski,godzina):
     url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&screen=place&try=confirm"
     body = (f"4020934f82eabb1efbb28c=458160e5402093&source_village={wiocha}&x={coordy['x']}&y={coordy['y']}&target_type=coord&attack={rodzaj}&input={coordy['x']}|{coordy['y']}&"
-    f"spear={ilosc['ilosc_spear']}&sword={ilosc['ilosc_sword']}&axe={ilosc['ilosc_axe']}&archer={ilosc['ilosc_archer']}&spy={ilosc['ilosc_spy']}&light={ilosc['ilosc_light']}&"
-    f"marcher={ilosc['ilosc_marcher']}&heavy={ilosc['ilosc_heavy']}&ram={ilosc['ilosc_ram']}&catapult={ilosc['ilosc_catapult']}&knight={ilosc['ilosc_knight']}&snob={ilosc['ilosc_snob']}")
+    f"spear={ilosc['spear']}&sword={ilosc['sword']}&axe={ilosc['axe']}&archer={ilosc['archer']}&spy={ilosc['spy']}&light={ilosc['light']}&"
+    f"marcher={ilosc['marcher']}&heavy={ilosc['heavy']}&ram={ilosc['ram']}&catapult={ilosc['catapult']}&knight={ilosc['knight']}&snob={ilosc['snob']}")
     res = s.post(url, data=body, allow_redirects=False)
     index = res.text.find('<input type="hidden" name="ch" value="') + len('<input type="hidden" name="ch" value="')
     ch = res.text[index:res.text.find('"', index)]
@@ -59,14 +42,14 @@ def atakowanie(wioska,cel,jednoski,godzina):
     f"marcher={ilosc['ilosc_marcher']}&heavy={ilosc['ilosc_heavy']}&ram={ilosc['ilosc_ram']}&catapult={ilosc['ilosc_catapult']}&knight={ilosc['ilosc_knight']}&snob={ilosc['ilosc_snob']}&building=main&h={h}")
     res = s.post(url, data=body_potwierdzenie, allow_redirects=True)
 
-def upgrade(`wiocha,budynek,godzina):
+def upgrade(wiocha,budynek,godzina):
     upgrade_url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&screen=main&ajaxaction=upgrade_building&type=main&h={h}&&client_time={int(time.time())}"
     body = f'id={budynki["ratusz"]}&force=1&destroy=0&source={wiocha}'
     res = s.post(upgrade_url, data=body, allow_redirects=False)
 
-def czasowka(*args):
-    dt = datetime.datetime(*args)
-    tm = time.mktime(dt.timetuple(dt))
+def czasowka(*args): #liczby
+    dt = datetime.datetime(*args) #date
+    tm = time.mktime(dt.timetuple(dt)) #czas maszynowy
     while True:
         if  timeit.default_timer()+roznica >= tm:
             atakowanie()
@@ -116,11 +99,16 @@ def main():
     s.headers['TribalWars-Ajax'] = '1'
     czas = res.text[-395:-360]
     czas = re.sub(r'[Tmgitn(); \n]', '', czas)
+    print(czas)
     teraz = timeit.default_timer() - teraz
+    print(teraz)
     roznica = float(czas[1::]) - timeit.default_timer() + teraz
+    print(roznica)
 
     czas_strony = timeit.default_timer()+roznica
+    print(czas_strony)
     local_time = time.ctime(czas_strony)
+    print(local_time)
 
 
     url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&ajax=ree"
@@ -131,3 +119,6 @@ def main():
 
 #czasowka(2019,8,24,23,14,25)
 #print(sprawdz_konto('lololoks','4mzkkk'))
+print(timeit.default_timer())
+print(time.time())
+print(time.time()+timeit.default_timer())
