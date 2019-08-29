@@ -10,43 +10,47 @@ import re
 def logout(city_id):
     url_logout = f"https://pl140.plemiona.pl/game.php?village={city_id}&screen=&action=logout&h={h}"
 
-def prime(time): #wypierdala sie przy wywołaniu url 15 linia
-    print('test')
-    print(auth) # wypierdala sie przy wywolaniu czegokolwiek
+def prime(village_id,url,*args): #wypierdala sie przy wywołaniu url 15 linia
     s = requests.Session()
-    print(time)
     s.headers['User-Agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:63.0) Gecko/20100101 Firefox/63.0"
     s.headers['Content-Type'] = 'application/x-www-form-urlencoded'
     s.headers['X-Requested-With'] = 'XMLHttpRequest'
-    print('elo')
+    print('tutaj')
+    print(url)
     res = s.get(url)
-
+    print('tutaj1/2')
     data = f"username={login}&password={password}&remember=1"
+    print('tutaj2')
     res = s.post(authurl, data=data, allow_redirects=False)
-
+    print(authurl)
+    print('tutaj3')
+    print(url_world)
     res = s.get(url_world)
     url_token = res.json()['uri']
     teraz = timeit.default_timer()
     res = s.get(url_token)
 
     s.headers['TribalWars-Ajax'] = '1'
-    czas = res.text[-395:-360]
-    czas = re.sub(r'[Tmgitn(); \n]', '', czas)
+    czas = res.text[-600:-300]
+    index = czas.find("Timing.init(") + len(("Timing.init("))
+    index_2nd = czas.find("TribalWars.initTab") - 11
+    czas = czas[index:index_2nd]
     teraz = timeit.default_timer() - teraz
-    roznica = float(czas[1::]) - time.time() + teraz
+    roznica = float(czas) - time.time() + teraz
 
     czas_strony = time.time() + roznica
     local_time = time.ctime(czas_strony)
 
-    url = f"https://{swiat}.plemiona.pl/game.php?village={wiocha}&ajax=ree"
+    url = f"https://{world}.plemiona.pl/game.php?village={village_id}&ajax=ree"
     res = s.get(url)
     game_data = res.json()
 
     h = game_data['game_data']['csrf']
-    dt = datetime.datetime(time)
-    tm = time.mktime(dt.timetuple(dt))
+    print(args)
+    dt = datetime.datetime(*args)
+    tm = time.mktime(dt.timetuple())
     while True:
-        if  timeit.default_timer()+roznica >= tm:
+        if  time.time()+roznica >= tm:
             print(tm)
             print('wyslalo')
             break
@@ -61,16 +65,12 @@ def przypisz():
         global login, password, url, world,authurl,url_world
         login = dlg.loginLog.text()
         password = dlg.passwordLog.text()
+        world = dlg.worldLog.text()
         url = f"https://{dlg.urlLog.text()}"
         authurl = f'{url}/page/auth'
         url_world = f"{url}/page/play/{world}"
-        print(url)
-        print(authurl)
-        world = dlg.worldLog.text()
         dlg.close()
-        print('url')
         root.show()
-        print(url)
 
 def error_puste_pole():
     QMessageBox.information(None, "404", "One or more fields are empty")
@@ -82,7 +82,6 @@ def timeline_add_train(): # poprawic
 
 def timeline_add_build():
     slot = f"{root.time_build.text()} | BUILD | ID: {root.ID_village_build.text()} | {root.build_type.currentText()}"
-
     root.timeline.addItem(slot)
 
 def timeline_add_atack():
@@ -92,9 +91,9 @@ def timeline_add_atack():
         ilosc[f'{i}'] = atk_win.amount_atack.item(a,0).text()
         a+=1
     slot = f"{root.time_atack.text()} | ATTACK | ID: {root.village_id_source.text()} | {root.target_xy.text()} | {ilosc}"
-    print(root.time_atack.text(),root.village_id_source.text(),root.target_xy.text())
+    print(slot)
     root.timeline.addItem(slot)
-    prime((2019,8,27,2,13,30,1234))
+    prime('92681',url,2019,8,27,2,13,30,1234)
 
 def show_atack_content():
     atk_win.show()
@@ -106,7 +105,6 @@ if __name__ == '__main__':
     dlg = uic.loadUi("main_root.ui")
     root = uic.loadUi("main_win.ui")
     atk_win = uic.loadUi("amount.ui")
-
 
     login = ""
     password = ""
