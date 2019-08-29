@@ -10,7 +10,9 @@ import re
 def logout(city_id):
     url_logout = f"https://pl140.plemiona.pl/game.php?village={city_id}&screen=&action=logout&h={h}"
 
-def prime(village_id,url,*args): #wypierdala sie przy wywołaniu url 15 linia
+def prime(village_id,url,time_func): #wypierdala sie przy wywołaniu url 15 linia
+    time_func = tuple(map(int, time_func.split(":")))
+    print(time_func)
     s = requests.Session()
     s.headers['User-Agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:63.0) Gecko/20100101 Firefox/63.0"
     s.headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -36,7 +38,8 @@ def prime(village_id,url,*args): #wypierdala sie przy wywołaniu url 15 linia
     index_2nd = czas.find("TribalWars.initTab") - 11
     czas = czas[index:index_2nd]
     teraz = timeit.default_timer() - teraz
-    roznica = float(czas) - time.time() + teraz
+    print(time.time())
+    roznica = float(czas) - time.time() + teraz #rip
 
     czas_strony = time.time() + roznica
     local_time = time.ctime(czas_strony)
@@ -46,15 +49,13 @@ def prime(village_id,url,*args): #wypierdala sie przy wywołaniu url 15 linia
     game_data = res.json()
 
     h = game_data['game_data']['csrf']
-    print(args)
-    dt = datetime.datetime(*args)
+    dt = datetime.datetime(time_func[0],time_func[1],time_func[2],time_func[3],time_func[4],time_func[5],time_func[6])
     tm = time.mktime(dt.timetuple())
     while True:
         if  time.time()+roznica >= tm:
-            print(tm)
             print('wyslalo')
             break
-        print(f'{time.ctime(timeit.default_timer()+roznica)} +  czekam na {time.ctime(tm)} ')
+        print(f'{time.ctime(time.time()+roznica)} +  czekam na {time.ctime(tm)} ')
 
 
 
@@ -79,10 +80,12 @@ def timeline_add_train(): # poprawic
     slot = f"{root.time_train.text()} | TRAIN | ID: {root.ID_village_train.text()} | {root.train_type.currentText()} | {root.amount_train.text()}"
 
     root.timeline.addItem(slot)
+    prime('92681', url, root.time_train.text())
 
 def timeline_add_build():
     slot = f"{root.time_build.text()} | BUILD | ID: {root.ID_village_build.text()} | {root.build_type.currentText()}"
     root.timeline.addItem(slot)
+    prime('92681', url, root.time_build.text())
 
 def timeline_add_atack():
     global ilosc
@@ -91,9 +94,8 @@ def timeline_add_atack():
         ilosc[f'{i}'] = atk_win.amount_atack.item(a,0).text()
         a+=1
     slot = f"{root.time_atack.text()} | ATTACK | ID: {root.village_id_source.text()} | {root.target_xy.text()} | {ilosc}"
-    print(slot)
     root.timeline.addItem(slot)
-    prime('92681',url,2019,8,27,2,13,30,1234)
+    prime('92681',url,root.time_atack.text())
 
 def show_atack_content():
     atk_win.show()
