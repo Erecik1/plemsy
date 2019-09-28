@@ -132,6 +132,9 @@ def timeline_add_train():
             if slot[0]<= main_table[i][0]:
                 main_table.insert(i,slot)
             else:
+                if i==len(main_table)-1:
+                    main_table.append(slot)
+                    break
                 i += 1
 
 def timeline_add_build():
@@ -146,6 +149,8 @@ def timeline_add_build():
                 main_table.insert(i, slot)
                 break
             else:
+                if i==len(main_table)-1:
+                    main_table.append(slot)
                 i += 1
 
 def timeline_add_atack():
@@ -164,6 +169,8 @@ def timeline_add_atack():
             if slot[0] <= main_table[i][0]:
                 main_table.insert(i, slot)
             else:
+                if i==len(main_table)-1:
+                    main_table.append(slot)
                 i += 1
 
 def make_time(data):
