@@ -59,11 +59,6 @@
      <property name="viewMode">
       <enum>QListView::ListMode</enum>
      </property>
-     <item>
-      <property name="text">
-       <string>CZAS|TYP|SZCZEGÓŁY</string>
-      </property>
-     </item>
     </widget>
    </widget>
    <widget class="QTabWidget" name="tabWidget">
@@ -205,14 +200,14 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>220</x>
         <y>20</y>
         <width>111</width>
         <height>51</height>
        </rect>
       </property>
       <property name="text">
-       <string>Soon because it's hard</string>
+       <string>not now :c</string>
       </property>
      </widget>
     </widget>
@@ -556,9 +551,23 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
-  <tabstop>ID_village_build</tabstop>
+  <tabstop>time_atack</tabstop>
+  <tabstop>village_id_source</tabstop>
+  <tabstop>target_xy</tabstop>
+  <tabstop>atack_content</tabstop>
+  <tabstop>addToTime_atack</tabstop>
+  <tabstop>addToTime_noble</tabstop>
   <tabstop>time_build</tabstop>
+  <tabstop>ID_village_build</tabstop>
+  <tabstop>build_type</tabstop>
   <tabstop>addToTime_build</tabstop>
+  <tabstop>time_train</tabstop>
+  <tabstop>ID_village_train</tabstop>
+  <tabstop>train_type</tabstop>
+  <tabstop>amount_train</tabstop>
+  <tabstop>addToTime_train</tabstop>
+  <tabstop>timeline</tabstop>
+  <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources/>
  <connections/>

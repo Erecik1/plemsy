@@ -22,24 +22,21 @@ def time_thread():
     res = s.get(url_token)
 
     s.headers['TribalWars-Ajax'] = '1'
-    czas = res.text[-600:-300]
-    index = czas.find("Timing.init(") + len(("Timing.init("))
-    index_2nd = czas.find("TribalWars.initTab") - 11
-    czas = czas[index:index_2nd]
+    time_web = res.text[-600:-300]
+    index = time_web.find("Timing.init(") + len(("Timing.init("))
+    index_2nd = time_web.find("TribalWars.initTab") - 11
+    time_web = time_web[index:index_2nd]
     teraz = timeit.default_timer() - teraz
-    time_dif = float(czas) - time.time() + teraz
-
-    czas_strony = time.time() + time_dif
-    local_time = time.ctime(czas_strony)
-    print(local_time)
+    time_dif = float(time_web) - time.time() + teraz
 
     s.close()
     while not dead:
         if len(main_table)==0:
-            print(time.ctime(time.time() + time_dif))
+            time.sleep(7)
 
         else:
             if main_table[0][0]  <= time.time()+time_dif + 60:
+                print(main_table)
                 s = requests.Session()
                 s.headers[
                     'User-Agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:63.0) Gecko/20100101 Firefox/63.0"
@@ -59,8 +56,8 @@ def time_thread():
 
 
                 if main_table[0][1] == "BUILD":
-                    upgrade_url = f"https://{world}.{gametype}/game.php?village={main_table[0][2]}&screen=main&ajaxaction=upgrade_building&type=main&h={h}&&client_time={int(time.time())}"
-                    body = f'id={main_table[0][2]}&force=1&destroy=0&source={main_table[0][2]}'
+                    upgrade_url = f"https://{world}.{gametype}/game.php?village={main_table[0][2]}&screen=main&ajaxaction=upgrade_building&type=main&h={h}"
+                    body = f'id={main_table[0][3]}&force=1&destroy=0&source={main_table[0][2]}&h={h}'
                     while True:
                         if time.time()+time_dif >= main_table[0][0]:
                             res = s.post(upgrade_url, data=body, allow_redirects=False)
@@ -76,16 +73,16 @@ def time_thread():
                     index = res.text.find('value="',index) +len('value="')
                     random_code2 = res.text[index:res.text.find('"', index)]
                     url = f"https://{world}.{gametype}/game.php?village={main_table[0][2]}&screen=place&try=confirm"
-                    body = (f"{random_code1}={random_code2}&source_village={main_table[0][2]}&x={coordy['x']}&y={coordy['y']}&target_type=coord&attack={rodzaj}&input={coordy['x']}|{coordy['y']}&"
+                    body = (f"{random_code1}={random_code2}&source_village={main_table[0][2]}&x={main_table[0][3][:3]}&y={main_table[0][3][4::]}&target_type=coord&attack={rodzaj}&input=&"
                     f"spear={ilosc['spear']}&sword={ilosc['sword']}&axe={ilosc['axe']}&archer={ilosc['archer']}&spy={ilosc['spy']}&light={ilosc['light']}&"
                     f"marcher={ilosc['marcher']}&heavy={ilosc['heavy']}&ram={ilosc['ram']}&catapult={ilosc['catapult']}&knight={ilosc['knight']}&snob={ilosc['snob']}")
                     res = s.post(url, data=body, allow_redirects=False)
                     index = res.text.find('<input type="hidden" name="ch" value="') + len('<input type="hidden" name="ch" value="')
                     ch = res.text[index:res.text.find('"', index)]
                     url = f"https://{world}.{gametype}/game.php?village={main_table[0][2]}&screen=place&action=command"
-                    body_potwierdzenie = (f"attack=true&ch={ch}&x={coordy['x']}&y={coordy['y']}&source_village={main_table[0][2]}&village={main_table[0][3]}&"
-                    f"spear={ilosc['ilosc_spear']}&sword={ilosc['ilosc_sword']}&axe={ilosc['ilosc_axe']}&archer={ilosc['ilosc_archer']}&spy={ilosc['ilosc_spy']}&light={ilosc['ilosc_light']}&"
-                    f"marcher={ilosc['ilosc_marcher']}&heavy={ilosc['ilosc_heavy']}&ram={ilosc['ilosc_ram']}&catapult={ilosc['ilosc_catapult']}&knight={ilosc['ilosc_knight']}&snob={ilosc['ilosc_snob']}&building=main&h={h}")
+                    body_potwierdzenie = (f"attack=true&ch={ch}&x={main_table[0][3][:3]}&y={main_table[0][3][4::]}&source_village={main_table[0][2]}&village={main_table[0][3]}&"
+                    f"spear={ilosc['spear']}&sword={ilosc['sword']}&axe={ilosc['axe']}&archer={ilosc['archer']}&spy={ilosc['spy']}&light={ilosc['light']}&"
+                    f"marcher={ilosc['marcher']}&heavy={ilosc['heavy']}&ram={ilosc['ram']}&catapult={ilosc['catapult']}&knight={ilosc['knight']}&snob={ilosc['snob']}&building=main&h={h}")
                     while True:
                         if time.time()+time_dif >= main_table[0][0]:
                             res = s.post(url, data=body_potwierdzenie, allow_redirects=True)
@@ -188,7 +185,7 @@ def appExec():
     dead = True
 
 if __name__ == '__main__':
-    global dead
+    global dead,rodzaj
     app = QtWidgets.QApplication([])
     dlg = uic.loadUi("main_root.ui")
     root = uic.loadUi("main_win.ui")
@@ -207,7 +204,7 @@ if __name__ == '__main__':
     unit_type = ['spear','sword','axe','archer','spy','light','marcher','heavy','ram','catapult','knight','snob']
 
     ilosc = {}
-
+    rodzaj = "Napad"
     dlg.login_button.clicked.connect(przypisz)
     root.addToTime_train.clicked.connect(timeline_add_train)
     root.addToTime_build.clicked.connect(timeline_add_build)
