@@ -8,7 +8,7 @@ import threading
 import timeit
 
 def time_thread():
-    global login, password, url, world,authurl,url_world,gametype, roznica,dead
+    global login, password, url, world,authurl,url_world,gametype, time_dif,dead
     s = requests.Session()
     s.headers['User-Agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:63.0) Gecko/20100101 Firefox/63.0"
     s.headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -27,19 +27,19 @@ def time_thread():
     index_2nd = czas.find("TribalWars.initTab") - 11
     czas = czas[index:index_2nd]
     teraz = timeit.default_timer() - teraz
-    roznica = float(czas) - time.time() + teraz
+    time_dif = float(czas) - time.time() + teraz
 
-    czas_strony = time.time() + roznica
+    czas_strony = time.time() + time_dif
     local_time = time.ctime(czas_strony)
     print(local_time)
 
     s.close()
     while not dead:
         if len(main_table)==0:
-            print(time.ctime(time.time() + roznica))
+            print(time.ctime(time.time() + time_dif))
 
         else:
-            if main_table[0][0]  <= time.time()+roznica + 60:
+            if main_table[0][0]  <= time.time()+time_dif + 60:
                 s = requests.Session()
                 s.headers[
                     'User-Agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:63.0) Gecko/20100101 Firefox/63.0"
@@ -62,7 +62,7 @@ def time_thread():
                     upgrade_url = f"https://{world}.{gametype}/game.php?village={main_table[0][2]}&screen=main&ajaxaction=upgrade_building&type=main&h={h}&&client_time={int(time.time())}"
                     body = f'id={main_table[0][2]}&force=1&destroy=0&source={main_table[0][2]}'
                     while True:
-                        if time.time()+roznica >= main_table[0][0]:
+                        if time.time()+time_dif >= main_table[0][0]:
                             res = s.post(upgrade_url, data=body, allow_redirects=False)
                             del main_table[0]
                             s.close()
@@ -87,7 +87,7 @@ def time_thread():
                     f"spear={ilosc['ilosc_spear']}&sword={ilosc['ilosc_sword']}&axe={ilosc['ilosc_axe']}&archer={ilosc['ilosc_archer']}&spy={ilosc['ilosc_spy']}&light={ilosc['ilosc_light']}&"
                     f"marcher={ilosc['ilosc_marcher']}&heavy={ilosc['ilosc_heavy']}&ram={ilosc['ilosc_ram']}&catapult={ilosc['ilosc_catapult']}&knight={ilosc['ilosc_knight']}&snob={ilosc['ilosc_snob']}&building=main&h={h}")
                     while True:
-                        if time.time()+roznica >= main_table[0][0]:
+                        if time.time()+time_dif >= main_table[0][0]:
                             res = s.post(url, data=body_potwierdzenie, allow_redirects=True)
                             del main_table[0]
                             s.close()
@@ -97,7 +97,7 @@ def time_thread():
                     body = f"units%5B{main_table[0][3]}%5D={main_table[0][4]}"
                     url = f"https://{world}.{gametype}/game.php?village={main_table[0][1]}&screen=barracks&ajaxaction=train&mode=train&&h={h}&&client_time={int(time.time())}"
                     while True:
-                        if time.time()+roznica >= main_table[0][0]:
+                        if time.time()+time_dif >= main_table[0][0]:
                             res = s.post(url, data=body, allow_redirects=False)
                             del main_table[0]
                             s.close()
@@ -181,6 +181,12 @@ def show_atack_content():
 def error_puste_pole():
     QMessageBox.information(None, "404", "One or more fields are empty")
 
+def appExec():
+    global dead
+    app = QApplication(sys.argv)
+    app.exec_()
+    dead = True
+
 if __name__ == '__main__':
     global dead
     app = QtWidgets.QApplication([])
@@ -212,4 +218,4 @@ if __name__ == '__main__':
 
     dlg.show()
 
-    sys.exit(app.exec())
+    sys.exit(appExec())
